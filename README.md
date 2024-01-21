@@ -34,43 +34,47 @@ pip3 install ReQBodyMan
 from ReQBodyMan.ReQBodyMan import ReQBodyMan
 ```
 
-**Note: Boolean values have a return value of 1 if True and a return value of 0 if False.**
-
 ### 2 Get Form Data
 
 If the data comes from the request with a form, you can get the data as follows.
 
 ```py
+
 Data : string, int, float, boolean, list, dict,  
-Parameters : contextName, variableType
+Parameters : contextName, variableType, booleanType=NoneRequired
+booleanType default = "int"
 Return: data
 
 data = self.ReQBodyMans.form("data_name", "str")
 data = self.ReQBodyMans.form("data_name", "int")
 data = self.ReQBodyMans.form("data_name", "float")
-data = self.ReQBodyMans.form("data_name", "bool")
+data = self.ReQBodyMans.form("data_name", "bool", booleanType="bool")
+data = self.ReQBodyMans.form("data_name", "bool", booleanType="int" )
 data = self.ReQBodyMans.form("data_name", "list")
 data = self.ReQBodyMans.form("data_name", "dict")
 ```
 
-If Variable Type is sent outside the specified format, data is received according to the str format.
+If Variable Type is sent outside the specified format, return None.
 
 ### 3 Get Json Data
 
 ```py
+
 Data : string, int, float, boolean, list, dict,  
-Parameters : contextName, variableType
+Parameters : contextName, variableType, booleanType=NoneRequired
+booleanType default = "int"
 Return : Data
 
 data = self.ReQBodyMans.json("data_name", "str")
 data = self.ReQBodyMans.json("data_name", "int")
 data = self.ReQBodyMans.json("data_name", "float")
-data = self.ReQBodyMans.json("data_name", "bool")
+data = self.ReQBodyMans.json("data_name", "bool", booleanType="bool")
+data = self.ReQBodyMans.json("data_name", "bool", booleanType="int")
 data = self.ReQBodyMans.json("data_name", "list")
 data = self.ReQBodyMans.json("data_name", "dict")
 ```
 
-If Variable Type is sent outside the specified format, data is received according to the str format.
+If Variable Type is sent outside the specified format, return None.
 
 ### 4 Get File
 
@@ -87,28 +91,28 @@ If FileName is not in request.file, the value "The {fileName} is not in request.
 
 ```py
 Data : string, int, float, boolean, list,  
-Parameters : variableName, variableType
+Parameters : variableName, variableType, booleanType=NoneRequired
+booleanType default = "int"
 Return : data
 
 data = self.ReQBodyMans.params("data_name", "str")
 data = self.ReQBodyMans.params("data_name", "int")
 data = self.ReQBodyMans.params("data_name", "float")
-data = self.ReQBodyMans.params("data_name", "bool")
+data = self.ReQBodyMans.params("data_name", "bool", booleanType="bool")
+data = self.ReQBodyMans.params("data_name", "bool", booleanType="int")
 data = self.ReQBodyMans.params("data_name", "list")
 ```
 
-If variablename is sent outside the specified format,
-
-variableType : str return : ""
-variableType : int return : 0
-variableType : float return : 0.0
-variableType : bool return : 0
-variableType : list return : []
-
-
-
+If Variable Type is sent outside the specified format, return None.
 
 # Release Note
+
+## v.1.1.0
+
+1. Added dict property to Params.
+2. Added dict property to Json
+3. The return value for bool type has been added to return int or bool type according to the value to be given with booleanType.
+4. Code refactor.
 
 ## v.1.0.1
 
