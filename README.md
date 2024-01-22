@@ -44,17 +44,19 @@ If the data comes from the request with a form, you can get the data as follows.
 ```py
 
 Data : string, int, float, boolean, list, dict,  
-Parameters : contextName, variableType, booleanType=NoneRequired
+Parameters : variableName, variableType, booleanType=NoneRequired
 booleanType default = "int"
 Return: data
 
-data = ReQBodyMans.form("data_name", "str")
-data = ReQBodyMans.form("data_name", "int")
-data = ReQBodyMans.form("data_name", "float")
-data = ReQBodyMans.form("data_name", "bool", booleanType="bool")
-data = ReQBodyMans.form("data_name", "bool", booleanType="int" )
-data = ReQBodyMans.form("data_name", "list")
-data = ReQBodyMans.form("data_name", "dict")
+data = ReQBodyMans.form(variableName, variableType, booleanType="int")
+
+data = ReQBodyMans.form("variableName", "str")
+data = ReQBodyMans.form("variableName", "int")
+data = ReQBodyMans.form("variableName", "float")
+data = ReQBodyMans.form("variableName", "bool", booleanType="bool")
+data = ReQBodyMans.form("variableName", "bool", booleanType="int" )
+data = ReQBodyMans.form("variableName", "list")
+data = ReQBodyMans.form("variableName", "dict")
 ```
 
 If Variable Type is sent outside the specified format, return None.
@@ -64,17 +66,19 @@ If Variable Type is sent outside the specified format, return None.
 ```py
 
 Data : string, int, float, boolean, list, dict,  
-Parameters : contextName, variableType, booleanType=NoneRequired
+Parameters : variableName, variableType, booleanType=NoneRequired
 booleanType default = "int"
 Return : Data
 
-data = ReQBodyMans.json("data_name", "str")
-data = ReQBodyMans.json("data_name", "int")
-data = ReQBodyMans.json("data_name", "float")
-data = ReQBodyMans.json("data_name", "bool", booleanType="bool")
-data = ReQBodyMans.json("data_name", "bool", booleanType="int")
-data = ReQBodyMans.json("data_name", "list")
-data = ReQBodyMans.json("data_name", "dict")
+data = ReQBodyMans.json(variableName, variableType, booleanType="int")
+
+data = ReQBodyMans.json("variableName", "str")
+data = ReQBodyMans.json("variableName", "int")
+data = ReQBodyMans.json("variableName", "float")
+data = ReQBodyMans.json("variableName", "bool", booleanType="bool")
+data = ReQBodyMans.json("variableName", "bool", booleanType="int")
+data = ReQBodyMans.json("variableName", "list")
+data = ReQBodyMans.json("variableName", "dict")
 ```
 
 If Variable Type is sent outside the specified format, return None.
@@ -98,12 +102,14 @@ Parameters : variableName, variableType, booleanType=NoneRequired
 booleanType default = "int"
 Return : data
 
-data = ReQBodyMans.params("data_name", "str")
-data = ReQBodyMans.params("data_name", "int")
-data = ReQBodyMans.params("data_name", "float")
-data = ReQBodyMans.params("data_name", "bool", booleanType="bool")
-data = ReQBodyMans.params("data_name", "bool", booleanType="int")
-data = ReQBodyMans.params("data_name", "list")
+data = ReQBodyMans.params(variableName, variableType, booleanType="int")
+
+data = ReQBodyMans.params("variableName", "str")
+data = ReQBodyMans.params("variableName", "int")
+data = ReQBodyMans.params("variableName", "float")
+data = ReQBodyMans.params("variableName", "bool", booleanType="bool")
+data = ReQBodyMans.params("variableName", "bool", booleanType="int")
+data = ReQBodyMans.params("variableName", "list")
 ```
 
 ### 6 GetAllData Function
@@ -115,6 +121,8 @@ variableName : Variable name in body data
 bodyType :  form, json, params, file
 booleanType: int, bool
 Return : allVariablesJson
+
+data = ReQBodyMans.getAllData(bodyJson)
 
 bodyJson = {
 
@@ -177,6 +185,14 @@ Return data content
 If Variable Type is sent outside the specified format, return None.
 
 # Release Note
+
+## v.1.2.2
+
+1. ReadMe file updated
+
+## v.1.2.1
+
+1. ReadMe file updated
 
 ## v1.2.0
 
