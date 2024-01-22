@@ -204,9 +204,56 @@ class ReQBodyMan():
                     
         else:
             return None
+
+    # endregion
+
+    # region Get All Data
         
-    # endregion
+    def getAllData(self, bodyJson):
 
-    # endregion
+        responseData = {}
 
+        for variableName, bodyList in bodyJson.items():
+
+            if bodyList[0] == "form":
+
+                if len(bodyList) == 3:
+                    data = self.form(variableName, bodyList[1], booleanType=bodyList[2])
+                
+                else:
+                    data = self.form(variableName, bodyList[1])
+
+                responseData[variableName] = data
+                
+            elif bodyList[0] == "json":
+
+                if len(bodyList) == 3:
+                    data = self.json(variableName, bodyList[1], booleanType=bodyList[2])
+                
+                else:
+                    data = self.json(variableName, bodyList[1])
+
+                responseData[variableName] = data
+                
+            elif bodyList[0] == "params":
+
+                if len(bodyList) == 3:
+                    data = self.params(variableName, bodyList[1], booleanType=bodyList[2])
+                
+                else:
+                    data = self.params(variableName, bodyList[1])
+
+                responseData[variableName] = data
+            
+            elif bodyList[0] == "file":
+                data = self.file()
+                responseData[variableName] = data
+            
+            else:
+                return {"error" : "Body type is not valid"}
+           
+        return responseData
+    
+    # endregion
+    
 # endregion

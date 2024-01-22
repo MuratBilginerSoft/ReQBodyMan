@@ -1,5 +1,3 @@
-# ReQBodyMan
-
 ![BrainyTechLogo](https://brainytech.net/wp-content/uploads/2023/11/brainy-tech-site.png)
 
 ## Project Description
@@ -26,12 +24,17 @@ pip3 install ReQBodyMan
 
 `flask`
 
-## Usege
+## Usage
 
-### 1 Import the package
+### 1 Import The Package
 
 ```py
 from ReQBodyMan.ReQBodyMan import ReQBodyMan
+```
+### 2 ReQBodyMan Create Object
+
+```py
+ReQBodyMans = ReQBodyMan()
 ```
 
 ### 2 Get Form Data
@@ -45,13 +48,13 @@ Parameters : contextName, variableType, booleanType=NoneRequired
 booleanType default = "int"
 Return: data
 
-data = self.ReQBodyMans.form("data_name", "str")
-data = self.ReQBodyMans.form("data_name", "int")
-data = self.ReQBodyMans.form("data_name", "float")
-data = self.ReQBodyMans.form("data_name", "bool", booleanType="bool")
-data = self.ReQBodyMans.form("data_name", "bool", booleanType="int" )
-data = self.ReQBodyMans.form("data_name", "list")
-data = self.ReQBodyMans.form("data_name", "dict")
+data = ReQBodyMans.form("data_name", "str")
+data = ReQBodyMans.form("data_name", "int")
+data = ReQBodyMans.form("data_name", "float")
+data = ReQBodyMans.form("data_name", "bool", booleanType="bool")
+data = ReQBodyMans.form("data_name", "bool", booleanType="int" )
+data = ReQBodyMans.form("data_name", "list")
+data = ReQBodyMans.form("data_name", "dict")
 ```
 
 If Variable Type is sent outside the specified format, return None.
@@ -65,13 +68,13 @@ Parameters : contextName, variableType, booleanType=NoneRequired
 booleanType default = "int"
 Return : Data
 
-data = self.ReQBodyMans.json("data_name", "str")
-data = self.ReQBodyMans.json("data_name", "int")
-data = self.ReQBodyMans.json("data_name", "float")
-data = self.ReQBodyMans.json("data_name", "bool", booleanType="bool")
-data = self.ReQBodyMans.json("data_name", "bool", booleanType="int")
-data = self.ReQBodyMans.json("data_name", "list")
-data = self.ReQBodyMans.json("data_name", "dict")
+data = ReQBodyMans.json("data_name", "str")
+data = ReQBodyMans.json("data_name", "int")
+data = ReQBodyMans.json("data_name", "float")
+data = ReQBodyMans.json("data_name", "bool", booleanType="bool")
+data = ReQBodyMans.json("data_name", "bool", booleanType="int")
+data = ReQBodyMans.json("data_name", "list")
+data = ReQBodyMans.json("data_name", "dict")
 ```
 
 If Variable Type is sent outside the specified format, return None.
@@ -83,7 +86,7 @@ Data : file
 Parameters : fileName
 Return: file
 
-file = self.ReQBodyMans.file("fileName")
+file = ReQBodyMans.file("fileName")
 ```
 If FileName is not in request.file, the value "The {fileName} is not in request.files" is returned.
 
@@ -95,17 +98,90 @@ Parameters : variableName, variableType, booleanType=NoneRequired
 booleanType default = "int"
 Return : data
 
-data = self.ReQBodyMans.params("data_name", "str")
-data = self.ReQBodyMans.params("data_name", "int")
-data = self.ReQBodyMans.params("data_name", "float")
-data = self.ReQBodyMans.params("data_name", "bool", booleanType="bool")
-data = self.ReQBodyMans.params("data_name", "bool", booleanType="int")
-data = self.ReQBodyMans.params("data_name", "list")
+data = ReQBodyMans.params("data_name", "str")
+data = ReQBodyMans.params("data_name", "int")
+data = ReQBodyMans.params("data_name", "float")
+data = ReQBodyMans.params("data_name", "bool", booleanType="bool")
+data = ReQBodyMans.params("data_name", "bool", booleanType="int")
+data = ReQBodyMans.params("data_name", "list")
+```
+
+### 6 GetAllData Function
+
+```py
+Data : string, int, float, boolean, list, file,  
+Parameters : bodyJson
+variableName : Variable name in body data 
+bodyType :  form, json, params, file
+booleanType: int, bool
+Return : allVariablesJson
+
+bodyJson = {
+
+    "variableName" : ["bodyType", "variableType", "booleanType"]
+}
+
+# BodyType Json
+
+bodyJson = {
+    
+    "password"  : ["json", "str"],
+    "email"     : ["json", "str"]
+}
+
+# Boolean Type Usage 
+
+bodyJson = {
+    
+    "password"  : ["json", "str"],
+    "email"     : ["json", "str"],
+    "status"    : ["json", "str", "int"]
+    "status2"   : ["json", "str", "bool"]
+}
+
+# BodyType Form
+
+bodyJson = {
+    
+    "password"  : ["form", "str"],
+    "email"     : ["form", "str"],
+    "status"    : ["form", "str", "int"]
+    "status2"   : ["form", "str", "bool"]
+    "fileName"  : ["file"] 
+}
+
+# BodyForm Params
+
+bodyJson = {
+    
+    "password"  : ["params", "str"],
+    "email"     : ["params", "str"],
+    "status"    : ["params", "str", "int"]
+    "status2"   : ["params", "str", "bool"] 
+}
+
+data = ReQBodyMans.getAllData(bodyJson)
+
+Return data content 
+
+{
+    "email" : "test@test.com",
+    "password":"test2",
+    "status" : "1" or "0",
+    "status2" : True or False,
+    "fileName" : file
+}
+
 ```
 
 If Variable Type is sent outside the specified format, return None.
 
 # Release Note
+
+## v1.2.0
+
+1. getAllData Function Added 
+      - Allows you to send all the data at once and receive the data as a dictionary
 
 ## v.1.1.0
 
