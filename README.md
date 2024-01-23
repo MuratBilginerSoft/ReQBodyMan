@@ -44,12 +44,7 @@ If the data comes from the request with a form, you can get the data as follows.
 ```py
 
 GetData : 
-    string, 
-    int, 
-    float, 
-    boolean, 
-    list, 
-    dict,
+    string, int, float, boolean, list, dict,
 
 Parameters:
     variableName : str, 
@@ -77,12 +72,7 @@ If Variable Type is sent outside the specified format, return None.
 ```py
 
 GetData: 
-    string, 
-    int, 
-    float, 
-    boolean, 
-    list, 
-    dict,
+    string, int, float, boolean, list, dict,
 
 Parameters: 
     variableName : str, 
@@ -110,8 +100,7 @@ If Variable Type is sent outside the specified format, return None.
 ```py
 
 GetData: 
-    file
-    files
+    file, files
 
 Return: 
     data: file or files, None
@@ -142,12 +131,7 @@ If FileName is not in request.file, the value None is returned.
 
 ```py
 Data : 
-    string
-    int
-    float
-    boolean
-    list
-    dict
+    string, int, float, boolean, list, dict,
 
 Parameters: 
     variableName : str, 
@@ -172,12 +156,7 @@ data = ReQBodyMans.params("variableName", "dict")
 
 ```py
 Data: 
-    string
-    int
-    float
-    boolean
-    list
-    file
+    string, int, float, boolean, list, dict, file
 
 Parameters: 
     bodyJson: dict
@@ -185,14 +164,10 @@ Parameters:
 variableName: Variable name in body data 
 
 bodyType:  
-    form
-    json
-    params
-    file
+    form, json, params, file
 
 booleanType:
-    int, 
-    bool
+    int, bool
 
 Return: 
     data: dict or None
@@ -261,37 +236,22 @@ Return data content
 
 ```py
 Data : 
-    string
-    int
-    float
-    boolean
-    list
-    file
-    files
+    string, int, float, boolean, list, dict, file, files
 
 Parameters: 
-    bodyJson:dict
+    bodyJson: dict
 
 type: 
-    form
-    json
-    params
+    form, json, params
 
 variableName: 
     Variable name in body data
 
 variableType:
-    string
-    int
-    float
-    boolean
-    list
-    file
-    files
+    string, int, float, boolean, list, dict, file, files
 
 booleanType: 
-    int 
-    bool
+    int, bool
 
 Return: 
     data:dict, None
@@ -366,6 +326,10 @@ Return data content
 If Variable Type is sent outside the specified format, return None.
 
 # Release Note
+
+## v.1.4.1
+
+1. ReadMe Updated 
 
 ## v.1.4.0
 
