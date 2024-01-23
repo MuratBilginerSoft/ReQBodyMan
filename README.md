@@ -37,16 +37,27 @@ from ReQBodyMan.ReQBodyMan import ReQBodyMan
 ReQBodyMans = ReQBodyMan()
 ```
 
-### 2 Get Form Data
+### 3 Get Form Data
 
 If the data comes from the request with a form, you can get the data as follows.
 
 ```py
 
-Data : string, int, float, boolean, list, dict,  
-Parameters : variableName, variableType, booleanType=NoneRequired
-booleanType default = "int"
-Return: data
+GetData : 
+    string, 
+    int, 
+    float, 
+    boolean, 
+    list, 
+    dict,
+
+Parameters:
+    variableName : str, 
+    variableType : str, 
+    booleanType  : str  > default = "int" NoneRequired
+
+Return: 
+    data : str, int, float, bool, list, dict, None
 
 data = ReQBodyMans.form(variableName, variableType, booleanType="int")
 
@@ -61,14 +72,25 @@ data = ReQBodyMans.form("variableName", "dict")
 
 If Variable Type is sent outside the specified format, return None.
 
-### 3 Get Json Data
+### 4 Get Json Data
 
 ```py
 
-Data : string, int, float, boolean, list, dict,  
-Parameters : variableName, variableType, booleanType=NoneRequired
-booleanType default = "int"
-Return : Data
+GetData: 
+    string, 
+    int, 
+    float, 
+    boolean, 
+    list, 
+    dict,
+
+Parameters: 
+    variableName : str, 
+    variableType : str, 
+    booleanType  : str  > default = "int" NoneRequired
+
+Return:
+    data : str, int, float, bool, list, dict, None
 
 data = ReQBodyMans.json(variableName, variableType, booleanType="int")
 
@@ -83,24 +105,57 @@ data = ReQBodyMans.json("variableName", "dict")
 
 If Variable Type is sent outside the specified format, return None.
 
-### 4 Get File
+### 5 Get File
 
 ```py
-Data : file
-Parameters : fileName
-Return: file
 
-file = ReQBodyMans.file("fileName")
+GetData: 
+    file
+    files
+
+Return: 
+    data: file or files, None
+
+data = ReQBodyMans.file()
+
 ```
-If FileName is not in request.file, the value "The {fileName} is not in request.files" is returned.
 
-### 5 Get Params
+### 6 Get SpecificFile
 
 ```py
-Data : string, int, float, boolean, list,  
-Parameters : variableName, variableType, booleanType=NoneRequired
-booleanType default = "int"
-Return : data
+
+GetData: 
+    file
+
+Parameters: 
+    fileName : str
+
+Return:
+    data: file, None
+
+data = ReQBodyMans.specificFile(fileName)
+
+```
+If FileName is not in request.file, the value None is returned.
+
+### 7 Get Params
+
+```py
+Data : 
+    string
+    int
+    float
+    boolean
+    list
+    dict
+
+Parameters: 
+    variableName : str, 
+    variableType : str, 
+    booleanType  : str  > default = "int" NoneRequired
+
+Return:
+    data : str, int, float, bool, list, dict, None
 
 data = ReQBodyMans.params(variableName, variableType, booleanType="int")
 
@@ -110,17 +165,37 @@ data = ReQBodyMans.params("variableName", "float")
 data = ReQBodyMans.params("variableName", "bool", booleanType="bool")
 data = ReQBodyMans.params("variableName", "bool", booleanType="int")
 data = ReQBodyMans.params("variableName", "list")
+data = ReQBodyMans.params("variableName", "dict")
 ```
 
-### 6 GetAllData Function
+### 8 GetAllData Function
 
 ```py
-Data : string, int, float, boolean, list, file,  
-Parameters : bodyJson
-variableName : Variable name in body data 
-bodyType :  form, json, params, file
-booleanType: int, bool
-Return : allVariablesJson
+Data: 
+    string
+    int
+    float
+    boolean
+    list
+    file
+
+Parameters: 
+    bodyJson: dict
+
+variableName: Variable name in body data 
+
+bodyType:  
+    form
+    json
+    params
+    file
+
+booleanType:
+    int, 
+    bool
+
+Return: 
+    data: dict or None
 
 data = ReQBodyMans.getAllData(bodyJson)
 
@@ -143,8 +218,8 @@ bodyJson = {
     
     "password"  : ["json", "str"],
     "email"     : ["json", "str"],
-    "status"    : ["json", "str", "int"]
-    "status2"   : ["json", "str", "bool"]
+    "status"    : ["json", "bool", "int"]
+    "status2"   : ["json", "bool", "bool"]
 }
 
 # BodyType Form
@@ -153,8 +228,8 @@ bodyJson = {
     
     "password"  : ["form", "str"],
     "email"     : ["form", "str"],
-    "status"    : ["form", "str", "int"]
-    "status2"   : ["form", "str", "bool"]
+    "status"    : ["form", "bool", "int"]
+    "status2"   : ["form", "bool", "bool"]
     "fileName"  : ["file"] 
 }
 
@@ -164,8 +239,8 @@ bodyJson = {
     
     "password"  : ["params", "str"],
     "email"     : ["params", "str"],
-    "status"    : ["params", "str", "int"]
-    "status2"   : ["params", "str", "bool"] 
+    "status"    : ["params", "bool", "int"]
+    "status2"   : ["params", "bool", "bool"] 
 }
 
 data = ReQBodyMans.getAllData(bodyJson)
@@ -182,9 +257,135 @@ Return data content
 
 ```
 
+### 9 GetAllDataHero Function
+
+```py
+Data : 
+    string
+    int
+    float
+    boolean
+    list
+    file
+    files
+
+Parameters: 
+    bodyJson:dict
+
+type: 
+    form
+    json
+    params
+
+variableName: 
+    Variable name in body data
+
+variableType:
+    string
+    int
+    float
+    boolean
+    list
+    file
+    files
+
+booleanType: 
+    int 
+    bool
+
+Return: 
+    data:dict, None
+
+data = ReQBodyMans.getAllDataHero(bodyJson)
+
+bodyJson = {
+
+    "type"=type, # required Key
+    "variableName" : ["variableType", "booleanType"]
+}
+
+# BodyType Json
+
+bodyJson = {
+    
+    "type":"json",
+    "password"  : ["str"],
+    "email"     : ["str"]
+}
+
+# Boolean Type Usage 
+
+bodyJson = {
+    
+    "type":"json",
+    "password"  : ["str"],
+    "email"     : ["str"],
+    "status"    : ["bool", "int"]
+    "status2"   : ["bool", "bool"]
+}
+
+# BodyType Form
+
+bodyJson = {
+    
+    "type":"form",
+    "password"  : ["str"],
+    "email"     : ["str"],
+    "status"    : ["bool", "int"]
+    "status2"   : ["bool", "bool"]
+    "fileName"  : ["file"] # get all file in request.files
+    "fileName2" : ["files"] # Fetches only the file named file from request.files
+}
+
+# BodyType Params
+
+bodyJson = {
+
+    "type":"params",
+    "password"  : ["str"],
+    "email"     : ["str"],
+    "status"    : ["bool", "int"]
+    "status2"   : ["bool", "bool"] 
+}
+
+data = ReQBodyMans.getAllDataHero(bodyJson)
+
+Return data content 
+
+{
+    "email" : "test@test.com",
+    "password":"test2",
+    "status" : "1" or "0",
+    "status2" : True or False,
+    "fileName" : files,
+    "fileName2" : file
+}
+
+```
+
 If Variable Type is sent outside the specified format, return None.
 
 # Release Note
+
+## v.1.4.0
+
+1. Major BugFix 
+   - file and specificFile Function
+  
+2. ReadMe Updated 
+   - Instructions for use have been updated.
+
+## v.1.3.0
+
+1. getAllDataHero Function Added 
+    - Allows you to send all data at once more easily than v1 and receive data as a dictionary
+  
+2. specificFile Function Added
+    - The feature of getting what we want from more than 1 file sent in the request.files has been added.
+
+3. file Function Updated
+    - File function has been updated to receive all incoming files in request.files.
+    - file function name updated to files
 
 ## v.1.2.2
 

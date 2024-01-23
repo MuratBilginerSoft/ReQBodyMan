@@ -162,16 +162,24 @@ class ReQBodyMan():
 
     # endregion
         
-    # region File
+    # region Files
 
-    def file(self, fileName):
+    def files(self):
+
+        return request.files
+
+    # endregion
+
+    # region Specific File
+
+    def specificFile(self, fileName):
 
         if fileName in request.files:
             file = request.files[fileName]
             return file
         else:
-            return f"The {fileName} is not in request.files"
-
+            return None
+    
     # endregion
 
     # region Params
@@ -254,6 +262,63 @@ class ReQBodyMan():
            
         return responseData
     
+    # endregion
+
+    # region Get All Data Hero
+
+    def getAllDataHero(self, bodyJson):
+
+        responseData = {}
+        type = bodyJson["type"]
+        del bodyJson["type"]
+
+        if type == "form":
+
+            for variableName, bodyList in bodyJson.items():
+
+                if len(bodyList) == 2:
+                    data = self.form(variableName, bodyList[0], booleanType=bodyList[1])
+                else:
+                    if bodyList[0] == "file":
+                        data = self.specificFile(variableName)
+                        responseData[variableName] = data
+                    elif bodyList[0] == "files":
+                        data = self.files()
+                        responseData[variableName] = data
+                    else:
+                        data = self.form(variableName, bodyList[0])
+
+                responseData[variableName] = data
+        
+        elif type == "json":
+
+            for variableName, bodyList in bodyJson.items():
+
+                if len(bodyList) == 2:
+                    data = self.json(variableName, bodyList[0], booleanType=bodyList[1])
+                
+                else:
+                    data = self.json(variableName, bodyList[0])
+
+                responseData[variableName] = data
+
+        elif type == "params":
+
+            for variableName, bodyList in bodyJson.items():
+
+                if len(bodyList) == 2:
+                    data = self.params(variableName, bodyList[0], booleanType=bodyList[1])
+                
+                else:
+                    data = self.params(variableName, bodyList[0])
+
+                responseData[variableName] = data
+            
+        else:
+            return {"error" : "Body type is not valid"}
+
+        return responseData
+
     # endregion
     
 # endregion
